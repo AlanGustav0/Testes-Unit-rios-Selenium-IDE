@@ -1,5 +1,7 @@
 # Critérios de Teste
 
+## Mantém Livros - REQ01. O sistema deve permitir o cadastro, consulta, edição para alteração e exclusão de livros. O sistema deve rejeitar entradas inválidas – o ISBN deve ter 4 caracteres numéricos, não deve permitir o cadastro de um ISBN já cadastrado, entradas válidas para autor e título devem ter entre 1 e 50 caracteres alfanuméricos. 
+
 ### No primeiro caso de teste foi utilizada a técnica de caixa preta Classe de Equivalência (CE), levando em consideração o caminho feliz, ou seja, apenas as classes válidas.
 ![alt text](https://github.com/AlanGustav0/Testes-Unitarios-Selenium-IDE/blob/master/REQ01-CT01.JPG)
 
