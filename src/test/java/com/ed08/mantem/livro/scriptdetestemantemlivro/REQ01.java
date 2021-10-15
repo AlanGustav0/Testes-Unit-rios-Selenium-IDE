@@ -1,6 +1,7 @@
 package com.ed08.mantem.livro.scriptdetestemantemlivro;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
@@ -9,9 +10,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest
 public class REQ01 {
@@ -91,9 +95,14 @@ public class REQ01 {
         //Quando o usuário acessar a lista de livros e deletar um livro
         driver.findElement(By.linkText("Livros")).click();
         driver.findElement(By.linkText("Lista de Livros")).click();
-        vars.put("ISBN", driver.findElement(By.cssSelector("td")).getText());
+        vars.put("isbn", driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(2)")).getText());
+        driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(2)")).toString();
         driver.findElement(By.linkText("Excluir")).click();
         //Então o livro deve ser deletado com sucesso
-        assertThat(vars.isEmpty());
+        String line = driver.findElement(By.cssSelector("tbody")).getText();
+        if (!Objects.equals(line, "")) {
+            Assertions.assertNotEquals(vars.get("isbn"), driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(2)")));
+        }
+
     }
 }
